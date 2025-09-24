@@ -14,7 +14,7 @@ const initialState: Types.AuthState = {
 export const login = createAsyncThunk<
     Types.LoginResponse,
     Types.LoginPayload,
-    Types.RejectedValue
+    Types.ErrorResponse
 >('auth/login', async (payload, {rejectWithValue}) => {
     const url = HOST.concat('/auth/token/');
     return makeApiCall(url, 'POST', payload, rejectWithValue);
