@@ -6,20 +6,44 @@
  */
 
 import { NewAppScreen } from '@react-native/new-app-screen';
-import { StatusBar, StyleSheet, useColorScheme, View } from 'react-native';
+import { LogBox, StyleSheet, View } from 'react-native';
 import {
   SafeAreaProvider,
   useSafeAreaInsets,
+  SafeAreaView,
 } from 'react-native-safe-area-context';
+import { persistor, store } from './src/store';
+import { Provider } from 'react-redux';
+import { PersistGate } from 'redux-persist/integration/react';
+import { ThemeProvider } from './src/theme/ThemeProvider';
+import { NavigationContainer } from '@react-navigation/native';
+import { I18nextProvider } from 'react-i18next';
+import { MainNavigator } from './src/navigation/MainNavigator.tsx';
+import i18n from './i18n';
+
+const renderApp = () => {
+  return <MainNavigator />;
+};
 
 function App() {
-  const isDarkMode = useColorScheme() === 'dark';
-
+  LogBox.ignoreLogs([
+    '[Reanimated] Reduced motion setting is enabled on this device.',
+  ]);
   return (
-    <SafeAreaProvider>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <AppContent />
-    </SafeAreaProvider>
+    <Provider store={store}>
+      <SafeAreaProvider>
+        <SafeAreaView style={styles.container}>
+          <PersistGate loading={null} persistor={persistor}>
+            <ThemeProvider>
+              <NavigationContainer>
+                <I18nextProvider i18n={i18n}>{renderApp()}</I18nextProvider>
+                <AppContent />
+              </NavigationContainer>
+            </ThemeProvider>
+          </PersistGate>
+        </SafeAreaView>
+      </SafeAreaProvider>
+    </Provider>
   );
 }
 
@@ -36,10 +60,13 @@ function AppContent() {
   );
 }
 
+export default App;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: '#000000',
+  },
+  flex: {
+    flex: 1,
   },
 });
-
-export default App;

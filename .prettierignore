@@ -1,0 +1,54 @@
+# Build outputs
+android/
+ios/
+node_modules/
+.expo/
+.expo-shared/
+web-build/
+
+# Generated files
+*.log
+*.lock
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Assets and binaries
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.svg
+*.ttf
+*.otf
+*.woff
+*.woff2
+*.eot
+*.ico
+*.pdf
+
+# Documentation
+docs/
+coverage/
+*.md
+
+# Config files that should not be formatted
+.env*
+*.properties
+*.gradle
+*.plist
+*.entitlements
+Podfile
+Podfile.lock
+babel.config.js
+metro.config.js
+react-native.config.js
+
+# IDE and editor files
+.vscode/
+.idea/
+*.code-workspace
+
+
+# Test generated files
+e2e/artifacts/
