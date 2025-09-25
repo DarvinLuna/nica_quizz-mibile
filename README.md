@@ -95,3 +95,52 @@ To learn more about React Native, take a look at the following resources:
 - [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
 - [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
 - [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+
+# Instalación y ejecución inicial
+
+## Requisitos previos
+- Node.js y npm instalados
+- Android Studio (para emulador Android)
+- (Opcional) Dispositivo físico conectado
+- (Solo iOS, en Mac) Xcode y CocoaPods
+
+## Pasos para Linux
+1. Clona el repositorio:
+   ```sh
+   git clone <url-del-repo>
+   cd nica_quizz-mibile
+   ```
+2. Instala las dependencias:
+   ```sh
+   npm install
+   ```
+3. Da permisos de ejecución al gradle wrapper:
+   ```sh
+   chmod +x android/gradlew
+   ```
+4. Inicia el emulador Android desde Android Studio o conecta tu dispositivo.
+5. Ejecuta la app:
+   ```sh
+   npm run android
+   ```
+
+## Pasos para Windows
+1. Clona el repositorio:
+   ```bat
+   git clone <url-del-repo>
+   cd nica_quizz-mibile
+   ```
+2. Instala las dependencias:
+   ```bat
+   npm install
+   ```
+3. Inicia el emulador Android desde Android Studio o conecta tu dispositivo.
+4. Ejecuta la app:
+   ```bat
+   npm run android
+   ```
+
+## Notas adicionales
+- Si es la primera vez que ejecutas el proyecto, la descarga y configuración de dependencias puede tardar varios minutos.
+- Si tienes problemas con permisos en Windows, ejecuta la terminal como administrador.
+- Para iOS (solo Mac), sigue las instrucciones de CocoaPods incluidas más abajo en este README.

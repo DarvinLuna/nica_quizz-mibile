@@ -1,0 +1,56 @@
+import React, {FC} from 'react';
+import {StyleSheet, Text, TextStyle} from 'react-native';
+
+import {Nicaquizz as Types} from '../types/interfaces';
+import {fss, vs} from '../../utils';
+import {useTheme} from '../../theme/ThemeProvider';
+
+export enum Font {
+  BOLD = 'Montserrat-Bold',
+  REGULAR = 'Montserrat-Regular',
+}
+
+export enum TextType {
+  BIG = 'big',
+  MEDIUM = 'medium',
+  REGULAR = 'regular',
+  SMALL = 'small',
+}
+
+type TextTypeValue = `${TextType}`;
+
+interface TextViewProps {
+  type?: TextTypeValue;
+  style?: TextStyle;
+  children: React.ReactNode;
+}
+
+export const TextView: FC<TextViewProps> = ({
+  type = TextType.REGULAR,
+  style,
+  children,
+}) => {
+  const typeStyles: Record<TextTypeValue, TextStyle> = {
+    big: {fontSize: fss(20), fontFamily: Font.BOLD},
+    medium: {fontSize: fss(14), fontFamily: Font.BOLD},
+    regular: {fontSize: fss(14), fontFamily: Font.REGULAR},
+    small: {fontSize: fss(12), fontFamily: Font.REGULAR},
+  };
+  const {colors} = useTheme();
+  const styles = makeStyle(colors, typeStyles[type], style);
+  return <Text style={styles.container}>{children}</Text>;
+};
+
+const makeStyle = (
+  colors: Types.ThemeColors,
+  font: TextStyle,
+  style?: TextStyle,
+) =>
+  StyleSheet.create({
+    container: {
+      color: colors.primaryText,
+      paddingVertical: vs(4),
+      ...font,
+      ...style,
+    },
+  });

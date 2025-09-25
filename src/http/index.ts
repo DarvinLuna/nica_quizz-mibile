@@ -4,7 +4,6 @@ import Toast from 'react-native-toast-message';
 import {HOST} from '../constants/settings';
 import {store} from '../store';
 import {CLEAR_ERROR} from '../features';
-import i18n from '../../i18n';
 import {ToastType} from '../constants/utils';
 
 const getHeaders = () => {
@@ -126,7 +125,6 @@ export default async function makeApiCall(url, method, data, rejectWithValue) {
             method,
             data: {
                 ...data,
-                lang: i18n.language,
             },
         });
         return response.data;

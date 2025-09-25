@@ -25,4 +25,6 @@ export namespace NicaQuizz {
         isLoading: boolean;
         errors: Record<string, string | undefined>;
     };
+    export type ThemeColorKey = 'primary' | 'secondary' | 'accent' | 'error';
+
 }

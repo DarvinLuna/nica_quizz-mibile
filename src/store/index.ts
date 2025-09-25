@@ -10,11 +10,13 @@ import {
 } from 'redux-persist';
 import {configureStore} from '@reduxjs/toolkit';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import Config from 'react-native-config';
 import {NativeModules} from 'react-native';
 
 import futecAttendanceReducer from '../features';
+import { Platform } from 'react-native';
 
+// Cargar ENV desde el archivo .env.nica.quizz usando process.env
+const ENV = process.env.ENV || 'nica_quizz';
 
 const getPersistenceKey = async (): Promise<string> => {
     try {
@@ -30,7 +32,7 @@ const getPersistenceKey = async (): Promise<string> => {
                 instanceId &&
                 (launchMode === 'NEW_INSTANCE' || launchMode === 'KEEP_LAUNCHER')
             ) {
-                const baseKey = `nova_${Config.ENV || 'demo'}`;
+                const baseKey = `nova_${ENV}`;
                 return `${baseKey}_instance_${instanceId}`;
             }
         }
@@ -39,7 +41,7 @@ const getPersistenceKey = async (): Promise<string> => {
     }
 
     // Fallback to environment-specific key for single instances
-    return `nova_${Config.ENV || 'demo'}`;
+    return `nova_${ENV}`;
 };
 
 const createPersistedReducer = async () => {
@@ -47,7 +49,7 @@ const createPersistedReducer = async () => {
     console.log(`🗄️ Using persistence key: ${persistenceKey}`);
 
     const baseReducer = (() => {
-        switch (Config.ENV) {
+        switch (ENV) {
             case 'futec_attendance':
                 return futecAttendanceReducer;
         }
@@ -65,7 +67,7 @@ const createPersistedReducer = async () => {
 };
 
 const getPersistedReducer = () => {
-    switch (Config.ENV) {
+    switch (ENV) {
         case 'futec_attendance':
             return persistReducer(
                 {

@@ -5,7 +5,6 @@
  * @format
  */
 
-import { NewAppScreen } from '@react-native/new-app-screen';
 import { LogBox, StyleSheet, View } from 'react-native';
 import {
   SafeAreaProvider,
@@ -19,7 +18,7 @@ import { ThemeProvider } from './src/theme/ThemeProvider';
 import { NavigationContainer } from '@react-navigation/native';
 import { I18nextProvider } from 'react-i18next';
 import { MainNavigator } from './src/navigation/MainNavigator.tsx';
-import i18n from './i18n';
+
 
 const renderApp = () => {
   return <MainNavigator />;
@@ -36,7 +35,6 @@ function App() {
           <PersistGate loading={null} persistor={persistor}>
             <ThemeProvider>
               <NavigationContainer>
-                <I18nextProvider i18n={i18n}>{renderApp()}</I18nextProvider>
                 <AppContent />
               </NavigationContainer>
             </ThemeProvider>
@@ -52,10 +50,8 @@ function AppContent() {
 
   return (
     <View style={styles.container}>
-      <NewAppScreen
-        templateFileName="App.tsx"
-        safeAreaInsets={safeAreaInsets}
-      />
+      {/* <NewAppScreen templateFileName="App.tsx" safeAreaInsets={safeAreaInsets} /> */}
+      {/* Puedes agregar aquí tu contenido principal */}
     </View>
   );
 }
