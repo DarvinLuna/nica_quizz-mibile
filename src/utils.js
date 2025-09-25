@@ -1,9 +1,9 @@
-import {Dimensions, PixelRatio} from 'react-native';
-import {BaseToast, ErrorToast} from 'react-native-toast-message';
-import React, {useEffect, useState} from 'react';
-import {addEventListener} from '@react-native-community/netinfo';
+import { Dimensions, PixelRatio } from 'react-native';
+import { BaseToast, ErrorToast } from 'react-native-toast-message';
+import React, { useEffect, useState } from 'react';
+import { addEventListener } from '@react-native-community/netinfo';
 
-const {width, height} = Dimensions.get('window');
+const { width, height } = Dimensions.get('window');
 
 const guidelineBaseWidth = 375;
 const guidelineBaseHeight = 812;
@@ -68,11 +68,11 @@ export const vs = size => (height / guidelineBaseHeight) * size;
  * - This function is intended for responsive font sizes in React Native.
  */
 export const fss = size => {
-    const scale = Math.min(
-        width / guidelineBaseWidth,
-        height / guidelineBaseHeight,
-    );
-    return Math.round(size * scale * PixelRatio.getFontScale());
+  const scale = Math.min(
+    width / guidelineBaseWidth,
+    height / guidelineBaseHeight,
+  );
+  return Math.round(size * scale * PixelRatio.getFontScale());
 };
 
 /**
@@ -97,85 +97,85 @@ export const fss = size => {
 export const ms = (size, factor = 0.5) => size + (hs(size) - size) * factor;
 
 export const months = [
-    {label: 'ENERO', value: 1},
-    {label: 'FEBRERO', value: 2},
-    {label: 'MARZO', value: 3},
-    {label: 'ABRIL', value: 4},
-    {label: 'MAYO', value: 5},
-    {label: 'JUNIO', value: 6},
-    {label: 'JULIO', value: 7},
-    {label: 'AGOSTO', value: 8},
-    {label: 'SEPTIEMBRE', value: 9},
-    {label: 'OCTUBRE', value: 10},
-    {label: 'NOVIEMBRE', value: 11},
-    {label: 'DICIEMBRE', value: 12},
+  { label: 'ENERO', value: 1 },
+  { label: 'FEBRERO', value: 2 },
+  { label: 'MARZO', value: 3 },
+  { label: 'ABRIL', value: 4 },
+  { label: 'MAYO', value: 5 },
+  { label: 'JUNIO', value: 6 },
+  { label: 'JULIO', value: 7 },
+  { label: 'AGOSTO', value: 8 },
+  { label: 'SEPTIEMBRE', value: 9 },
+  { label: 'OCTUBRE', value: 10 },
+  { label: 'NOVIEMBRE', value: 11 },
+  { label: 'DICIEMBRE', value: 12 },
 ];
 
 export const years = [
-    {
-        label: String(new Date().getFullYear() - 1),
-        value: new Date().getFullYear() - 1,
-    },
-    {label: String(new Date().getFullYear()), value: new Date().getFullYear()},
-    {
-        label: String(new Date().getFullYear() + 1),
-        value: new Date().getFullYear() + 1,
-    },
+  {
+    label: String(new Date().getFullYear() - 1),
+    value: new Date().getFullYear() - 1,
+  },
+  { label: String(new Date().getFullYear()), value: new Date().getFullYear() },
+  {
+    label: String(new Date().getFullYear() + 1),
+    value: new Date().getFullYear() + 1,
+  },
 ];
 
 export const setUpToastConfig = (colors, cardColor, textColor) => {
-    return {
-        error: props => (
-            <ErrorToast
-                {...props}
-                style={{
-                    width: '95%',
-                    height: 'auto',
-                    borderLeftColor: colors.red,
-                    borderLeftWidth: ms(5),
-                    backgroundColor: cardColor,
-                }}
-                contentContainerStyle={{
-                    paddingHorizontal: ms(10),
-                    paddingVertical: ms(5),
-                }}
-                text1Style={{
-                    fontSize: fss(15),
-                    color: colors.red,
-                }}
-                text2Style={{
-                    fontSize: fss(14),
-                    color: textColor,
-                }}
-                text2NumberOfLines={4}
-            />
-        ),
-        success: props => (
-            <BaseToast
-                {...props}
-                style={{
-                    width: '95%',
-                    height: 'auto',
-                    borderLeftColor: colors.green,
-                    borderLeftWidth: ms(5),
-                    backgroundColor: cardColor,
-                }}
-                contentContainerStyle={{
-                    paddingHorizontal: ms(10),
-                    paddingVertical: ms(5),
-                }}
-                text1Style={{
-                    fontSize: fss(15),
-                    color: colors.green,
-                }}
-                text2Style={{
-                    fontSize: fss(14),
-                    color: textColor,
-                }}
-                text2NumberOfLines={4}
-            />
-        ),
-    };
+  return {
+    error: props => (
+      <ErrorToast
+        {...props}
+        style={{
+          width: '95%',
+          height: 'auto',
+          borderLeftColor: colors.red,
+          borderLeftWidth: ms(5),
+          backgroundColor: cardColor,
+        }}
+        contentContainerStyle={{
+          paddingHorizontal: ms(10),
+          paddingVertical: ms(5),
+        }}
+        text1Style={{
+          fontSize: fss(15),
+          color: colors.red,
+        }}
+        text2Style={{
+          fontSize: fss(14),
+          color: textColor,
+        }}
+        text2NumberOfLines={4}
+      />
+    ),
+    success: props => (
+      <BaseToast
+        {...props}
+        style={{
+          width: '95%',
+          height: 'auto',
+          borderLeftColor: colors.green,
+          borderLeftWidth: ms(5),
+          backgroundColor: cardColor,
+        }}
+        contentContainerStyle={{
+          paddingHorizontal: ms(10),
+          paddingVertical: ms(5),
+        }}
+        text1Style={{
+          fontSize: fss(15),
+          color: colors.green,
+        }}
+        text2Style={{
+          fontSize: fss(14),
+          color: textColor,
+        }}
+        text2NumberOfLines={4}
+      />
+    ),
+  };
 };
 
 /**
@@ -198,15 +198,15 @@ export const setUpToastConfig = (colors, cardColor, textColor) => {
  * - Make sure to handle the cleanup of the event listener to avoid memory leaks.
  */
 export const useNetStatus = () => {
-    const [connection, setConnection] = useState(false);
+  const [connection, setConnection] = useState(false);
 
-    useEffect(() => {
-        const unsubscribe = addEventListener(state => {
-            setConnection(state.isConnected ?? false);
-        });
+  useEffect(() => {
+    const unsubscribe = addEventListener(state => {
+      setConnection(state.isConnected ?? false);
+    });
 
-        return () => unsubscribe();
-    }, []);
+    return () => unsubscribe();
+  }, []);
 
-    return connection;
+  return connection;
 };

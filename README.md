@@ -104,6 +104,66 @@ To learn more about React Native, take a look at the following resources:
 - (Opcional) Dispositivo físico conectado
 - (Solo iOS, en Mac) Xcode y CocoaPods
 
+## Instalación de dependencias
+
+Recomendado usar **Yarn**:
+
+```bash
+# Linux/macOS
+yarn install
+
+# Windows
+yarn install
+```
+
+Alternativamente puedes usar **npm**:
+
+```bash
+# Linux/macOS
+npm install
+
+# Windows
+npm install
+```
+
+## Ejecución del proyecto
+
+### Iniciar Metro Bundler
+
+```bash
+# Yarn
+yarn start
+
+# npm
+npm start
+```
+
+### Ejecutar en Android
+
+```bash
+# Yarn
+yarn android
+
+# npm
+npm run android
+```
+
+### Ejecutar en iOS
+
+```bash
+# Yarn
+yarn ios
+
+# npm
+npm run ios
+```
+
+> **Nota:** Para iOS, asegúrate de instalar las dependencias de CocoaPods:
+> 
+> ```bash
+> cd ios && pod install
+> ```
+
 ## Pasos para Linux
 1. Clona el repositorio:
    ```sh

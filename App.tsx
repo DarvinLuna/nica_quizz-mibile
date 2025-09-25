@@ -19,7 +19,6 @@ import { NavigationContainer } from '@react-navigation/native';
 import { I18nextProvider } from 'react-i18next';
 import { MainNavigator } from './src/navigation/MainNavigator.tsx';
 
-
 const renderApp = () => {
   return <MainNavigator />;
 };

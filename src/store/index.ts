@@ -1,16 +1,16 @@
 import {
-    persistStore,
-    persistReducer,
-    FLUSH,
-    REHYDRATE,
-    PAUSE,
-    PERSIST,
-    PURGE,
-    REGISTER,
+  persistStore,
+  persistReducer,
+  FLUSH,
+  REHYDRATE,
+  PAUSE,
+  PERSIST,
+  PURGE,
+  REGISTER,
 } from 'redux-persist';
-import {configureStore} from '@reduxjs/toolkit';
+import { configureStore } from '@reduxjs/toolkit';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {NativeModules} from 'react-native';
+import { NativeModules } from 'react-native';
 
 import futecAttendanceReducer from '../features';
 import { Platform } from 'react-native';
@@ -19,138 +19,137 @@ import { Platform } from 'react-native';
 const ENV = process.env.ENV || 'nica_quizz';
 
 const getPersistenceKey = async (): Promise<string> => {
-    try {
-        const {Environment} = NativeModules;
+  try {
+    const { Environment } = NativeModules;
 
-        if (Environment) {
-            const instanceInfo = await Environment.getInstanceInfo();
-            const instanceId = instanceInfo?.instanceId;
-            const launchMode = instanceInfo?.launchMode;
+    if (Environment) {
+      const instanceInfo = await Environment.getInstanceInfo();
+      const instanceId = instanceInfo?.instanceId;
+      const launchMode = instanceInfo?.launchMode;
 
-            // For multi-instance scenarios, use unique keys
-            if (
-                instanceId &&
-                (launchMode === 'NEW_INSTANCE' || launchMode === 'KEEP_LAUNCHER')
-            ) {
-                const baseKey = `nova_${ENV}`;
-                return `${baseKey}_instance_${instanceId}`;
-            }
-        }
-    } catch (error) {
-        console.warn('Could not get instance info for persistence key:', error);
+      // For multi-instance scenarios, use unique keys
+      if (
+        instanceId &&
+        (launchMode === 'NEW_INSTANCE' || launchMode === 'KEEP_LAUNCHER')
+      ) {
+        const baseKey = `nova_${ENV}`;
+        return `${baseKey}_instance_${instanceId}`;
+      }
     }
+  } catch (error) {
+    console.warn('Could not get instance info for persistence key:', error);
+  }
 
-    // Fallback to environment-specific key for single instances
-    return `nova_${ENV}`;
+  // Fallback to environment-specific key for single instances
+  return `nova_${ENV}`;
 };
 
 const createPersistedReducer = async () => {
-    const persistenceKey = await getPersistenceKey();
-    console.log(`🗄️ Using persistence key: ${persistenceKey}`);
+  const persistenceKey = await getPersistenceKey();
+  console.log(`🗄️ Using persistence key: ${persistenceKey}`);
 
-    const baseReducer = (() => {
-        switch (ENV) {
-            case 'futec_attendance':
-                return futecAttendanceReducer;
-        }
-    })();
+  const baseReducer = (() => {
+    switch (ENV) {
+      case 'futec_attendance':
+        return futecAttendanceReducer;
+    }
+  })();
 
-    return persistReducer(
-        {
-            key: persistenceKey,
-            storage: AsyncStorage,
-            transforms: [],
-        },
-        // @ts-ignore
-        baseReducer,
-    );
+  return persistReducer(
+    {
+      key: persistenceKey,
+      storage: AsyncStorage,
+      transforms: [],
+    },
+    // @ts-ignore
+    baseReducer,
+  );
 };
 
 const getPersistedReducer = () => {
-    switch (ENV) {
-        case 'futec_attendance':
-            return persistReducer(
-                {
-                    key: 'root',
-                    storage: AsyncStorage,
-                },
-                futecAttendanceReducer,
-            );
-
-    }
+  switch (ENV) {
+    case 'futec_attendance':
+      return persistReducer(
+        {
+          key: 'root',
+          storage: AsyncStorage,
+        },
+        futecAttendanceReducer,
+      );
+  }
 };
 
 let storeInstance: ReturnType<typeof configureStore> | null = null;
 let persistorInstance: ReturnType<typeof persistStore> | null = null;
 
 export const initializeStore = async () => {
-    if (storeInstance && persistorInstance) {
-        return {store: storeInstance, persistor: persistorInstance};
-    }
+  if (storeInstance && persistorInstance) {
+    return { store: storeInstance, persistor: persistorInstance };
+  }
 
-    try {
-        const persistedReducer = await createPersistedReducer();
+  try {
+    const persistedReducer = await createPersistedReducer();
 
-        storeInstance = configureStore({
-            reducer: persistedReducer,
-            middleware: getDefaultMiddleware => {
-                return getDefaultMiddleware({
-                    serializableCheck: {
-                        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-                    },
-                    immutableCheck: false,
-                });
-            },
+    storeInstance = configureStore({
+      reducer: persistedReducer,
+      middleware: getDefaultMiddleware => {
+        return getDefaultMiddleware({
+          serializableCheck: {
+            ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+          },
+          immutableCheck: false,
         });
+      },
+    });
 
-        persistorInstance = persistStore(storeInstance);
+    persistorInstance = persistStore(storeInstance);
 
-        return {store: storeInstance, persistor: persistorInstance};
-    } catch (error) {
-        console.warn(
-            'Failed to create instance-specific store, falling back to legacy store:',
-            error,
-        );
+    return { store: storeInstance, persistor: persistorInstance };
+  } catch (error) {
+    console.warn(
+      'Failed to create instance-specific store, falling back to legacy store:',
+      error,
+    );
 
-        const legacyPersistedReducer = getPersistedReducer();
+    const legacyPersistedReducer = getPersistedReducer();
 
-        storeInstance = configureStore({
-            // @ts-ignore
-            reducer: legacyPersistedReducer,
-            middleware: getDefaultMiddleware => {
-                return getDefaultMiddleware({
-                    serializableCheck: {
-                        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-                    },
-                    immutableCheck: false,
-                });
-            },
+    storeInstance = configureStore({
+      // @ts-ignore
+      reducer: legacyPersistedReducer,
+      middleware: getDefaultMiddleware => {
+        return getDefaultMiddleware({
+          serializableCheck: {
+            ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+          },
+          immutableCheck: false,
         });
+      },
+    });
 
-        persistorInstance = persistStore(storeInstance);
+    persistorInstance = persistStore(storeInstance);
 
-        return {store: storeInstance, persistor: persistorInstance};
-    }
+    return { store: storeInstance, persistor: persistorInstance };
+  }
 };
 
 const persistedReducer = getPersistedReducer();
 
 const IGNORED_ACTIONS = [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER];
 const store = configureStore({
-    // @ts-ignore
-    reducer: persistedReducer,
-    middleware: getDefaultMiddleware => {
-        return getDefaultMiddleware({
-            serializableCheck: {
-                ignoredActions: IGNORED_ACTIONS,
-            },
-            immutableCheck: false,
-        });
-    },
+  // @ts-ignore
+  reducer: persistedReducer,
+  middleware: getDefaultMiddleware => {
+    return getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: IGNORED_ACTIONS,
+      },
+      immutableCheck: false,
+    });
+  },
 });
 
 const persistor = persistStore(store);
 
 export type AppDispatch = typeof store.dispatch;
 
-export {store, persistor};
+export { store, persistor };

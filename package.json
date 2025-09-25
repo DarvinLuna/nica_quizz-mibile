@@ -5,11 +5,11 @@
   "scripts": {
     "android": "../node_modules/.bin/react-native run-android",
     "ios": "../node_modules/.bin/react-native run-ios",
-    "lint": "eslint ..",
+    "lint": "eslint .",
     "start": "npx react-native start",
     "font": "node fonts/generate-font.js",
-    "format": "npm prettier --write ..",
-    "format:check": "prettier --check .."
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
   },
   "dependencies": {
     "@react-native-async-storage/async-storage": "^2.2.0",
@@ -32,7 +32,18 @@
     "svgicons2svgfont": "^15.0.1"
   },
   "devDependencies": {
+    "@eslint/js": "^9.36.0",
     "@react-native-community/cli": "latest",
-    "@react-native/metro-config": "^0.81.1"
+    "@react-native/metro-config": "^0.81.1",
+    "@typescript-eslint/eslint-plugin": "^8.44.1",
+    "@typescript-eslint/parser": "^8.44.1",
+    "eslint": "^9.36.0",
+    "eslint-config-react-native": "^4.1.0",
+    "eslint-plugin-import": "^2.32.0",
+    "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-react-hooks": "^5.2.0",
+    "eslint-plugin-react-native": "^5.0.0",
+    "prettier": "^3.6.2",
+    "typescript": "^5.9.2"
   }
 }
