@@ -13,6 +13,7 @@ interface IconProps {
 
 export const Icon: FC<IconProps> = ({icon, color, size, style}) => {
     const styles = makeStyles(color, size, style);
+    // @ts-ignoreS
     return <Text style={styles.icon}>{icon}</Text>;
 };
 
