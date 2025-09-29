@@ -1,0 +1,106 @@
+ERROR - 2025-09-29 20:10:01 --> Error connecting to the database: mysqli_sql_exception: Access denied for user ''@'localhost' (using password: NO) in /var/www/html/MathApp/vendor/codeigniter4/framework/system/Database/MySQLi/Connection.php:201
+Stack trace:
+#0 /var/www/html/MathApp/vendor/codeigniter4/framework/system/Database/MySQLi/Connection.php(201): mysqli->real_connect()
+#1 /var/www/html/MathApp/vendor/codeigniter4/framework/system/Database/BaseConnection.php(419): CodeIgniter\Database\MySQLi\Connection->connect()
+#2 /var/www/html/MathApp/vendor/codeigniter4/framework/system/Database/BaseConnection.php(614): CodeIgniter\Database\BaseConnection->initialize()
+#3 /var/www/html/MathApp/vendor/codeigniter4/framework/system/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+#4 /var/www/html/MathApp/vendor/codeigniter4/framework/system/Model.php(330): CodeIgniter\Database\BaseBuilder->get()
+#5 /var/www/html/MathApp/vendor/codeigniter4/framework/system/BaseModel.php(715): CodeIgniter\Model->doFirst()
+#6 /var/www/html/MathApp/app/Models/LoginModel.php(34): CodeIgniter\BaseModel->first()
+#7 /var/www/html/MathApp/app/Controllers/LoginContrtoller.php(29): App\Models\LoginModel->findByIdentifier()
+#8 /var/www/html/MathApp/vendor/codeigniter4/framework/system/CodeIgniter.php(933): App\Controllers\LoginContrtoller->login()
+#9 /var/www/html/MathApp/vendor/codeigniter4/framework/system/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+#10 /var/www/html/MathApp/vendor/codeigniter4/framework/system/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+#11 /var/www/html/MathApp/vendor/codeigniter4/framework/system/Boot.php(363): CodeIgniter\CodeIgniter->run()
+#12 /var/www/html/MathApp/vendor/codeigniter4/framework/system/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+#13 /var/www/html/MathApp/public/index.php(59): CodeIgniter\Boot::bootWeb()
+#14 /var/www/html/MathApp/vendor/codeigniter4/framework/system/rewrite.php(44): require_once('...')
+#15 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Access denied for user ''@'localhost' (using password: NO) in /var/www/html/MathApp/vendor/codeigniter4/framework/system/Database/MySQLi/Connection.php:246
+Stack trace:
+#0 /var/www/html/MathApp/vendor/codeigniter4/framework/system/Database/BaseConnection.php(419): CodeIgniter\Database\MySQLi\Connection->connect()
+#1 /var/www/html/MathApp/vendor/codeigniter4/framework/system/Database/BaseConnection.php(614): CodeIgniter\Database\BaseConnection->initialize()
+#2 /var/www/html/MathApp/vendor/codeigniter4/framework/system/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+#3 /var/www/html/MathApp/vendor/codeigniter4/framework/system/Model.php(330): CodeIgniter\Database\BaseBuilder->get()
+#4 /var/www/html/MathApp/vendor/codeigniter4/framework/system/BaseModel.php(715): CodeIgniter\Model->doFirst()
+#5 /var/www/html/MathApp/app/Models/LoginModel.php(34): CodeIgniter\BaseModel->first()
+#6 /var/www/html/MathApp/app/Controllers/LoginContrtoller.php(29): App\Models\LoginModel->findByIdentifier()
+#7 /var/www/html/MathApp/vendor/codeigniter4/framework/system/CodeIgniter.php(933): App\Controllers\LoginContrtoller->login()
+#8 /var/www/html/MathApp/vendor/codeigniter4/framework/system/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+#9 /var/www/html/MathApp/vendor/codeigniter4/framework/system/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+#10 /var/www/html/MathApp/vendor/codeigniter4/framework/system/Boot.php(363): CodeIgniter\CodeIgniter->run()
+#11 /var/www/html/MathApp/vendor/codeigniter4/framework/system/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+#12 /var/www/html/MathApp/public/index.php(59): CodeIgniter\Boot::bootWeb()
+#13 /var/www/html/MathApp/vendor/codeigniter4/framework/system/rewrite.php(44): require_once('...')
+#14 {main}
+CRITICAL - 2025-09-29 20:10:01 --> CodeIgniter\Database\Exceptions\DatabaseException: Unable to connect to the database.
+Main connection [MySQLi]: Access denied for user ''@'localhost' (using password: NO)
+[Method: POST, Route: auth/login]
+in SYSTEMPATH/Database/BaseConnection.php on line 465.
+ 1 SYSTEMPATH/Database/BaseConnection.php(614): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+ 3 SYSTEMPATH/Model.php(330): CodeIgniter\Database\BaseBuilder->get()
+ 4 SYSTEMPATH/BaseModel.php(715): CodeIgniter\Model->doFirst()
+ 5 APPPATH/Models/LoginModel.php(34): CodeIgniter\BaseModel->first()
+ 6 APPPATH/Controllers/LoginContrtoller.php(29): App\Models\LoginModel->findByIdentifier()
+ 7 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\LoginContrtoller->login()
+ 8 SYSTEMPATH/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+ 9 SYSTEMPATH/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+10 SYSTEMPATH/Boot.php(363): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+12 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+13 SYSTEMPATH/rewrite.php(44): require_once('/var/www/html/MathApp/public/index.php')
+ERROR - 2025-09-29 20:10:06 --> Error connecting to the database: mysqli_sql_exception: Access denied for user ''@'localhost' (using password: NO) in /var/www/html/MathApp/vendor/codeigniter4/framework/system/Database/MySQLi/Connection.php:201
+Stack trace:
+#0 /var/www/html/MathApp/vendor/codeigniter4/framework/system/Database/MySQLi/Connection.php(201): mysqli->real_connect()
+#1 /var/www/html/MathApp/vendor/codeigniter4/framework/system/Database/BaseConnection.php(419): CodeIgniter\Database\MySQLi\Connection->connect()
+#2 /var/www/html/MathApp/vendor/codeigniter4/framework/system/Database/BaseConnection.php(614): CodeIgniter\Database\BaseConnection->initialize()
+#3 /var/www/html/MathApp/vendor/codeigniter4/framework/system/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+#4 /var/www/html/MathApp/vendor/codeigniter4/framework/system/Model.php(330): CodeIgniter\Database\BaseBuilder->get()
+#5 /var/www/html/MathApp/vendor/codeigniter4/framework/system/BaseModel.php(715): CodeIgniter\Model->doFirst()
+#6 /var/www/html/MathApp/app/Models/LoginModel.php(34): CodeIgniter\BaseModel->first()
+#7 /var/www/html/MathApp/app/Controllers/LoginContrtoller.php(29): App\Models\LoginModel->findByIdentifier()
+#8 /var/www/html/MathApp/vendor/codeigniter4/framework/system/CodeIgniter.php(933): App\Controllers\LoginContrtoller->login()
+#9 /var/www/html/MathApp/vendor/codeigniter4/framework/system/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+#10 /var/www/html/MathApp/vendor/codeigniter4/framework/system/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+#11 /var/www/html/MathApp/vendor/codeigniter4/framework/system/Boot.php(363): CodeIgniter\CodeIgniter->run()
+#12 /var/www/html/MathApp/vendor/codeigniter4/framework/system/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+#13 /var/www/html/MathApp/public/index.php(59): CodeIgniter\Boot::bootWeb()
+#14 /var/www/html/MathApp/vendor/codeigniter4/framework/system/rewrite.php(44): require_once('...')
+#15 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Access denied for user ''@'localhost' (using password: NO) in /var/www/html/MathApp/vendor/codeigniter4/framework/system/Database/MySQLi/Connection.php:246
+Stack trace:
+#0 /var/www/html/MathApp/vendor/codeigniter4/framework/system/Database/BaseConnection.php(419): CodeIgniter\Database\MySQLi\Connection->connect()
+#1 /var/www/html/MathApp/vendor/codeigniter4/framework/system/Database/BaseConnection.php(614): CodeIgniter\Database\BaseConnection->initialize()
+#2 /var/www/html/MathApp/vendor/codeigniter4/framework/system/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+#3 /var/www/html/MathApp/vendor/codeigniter4/framework/system/Model.php(330): CodeIgniter\Database\BaseBuilder->get()
+#4 /var/www/html/MathApp/vendor/codeigniter4/framework/system/BaseModel.php(715): CodeIgniter\Model->doFirst()
+#5 /var/www/html/MathApp/app/Models/LoginModel.php(34): CodeIgniter\BaseModel->first()
+#6 /var/www/html/MathApp/app/Controllers/LoginContrtoller.php(29): App\Models\LoginModel->findByIdentifier()
+#7 /var/www/html/MathApp/vendor/codeigniter4/framework/system/CodeIgniter.php(933): App\Controllers\LoginContrtoller->login()
+#8 /var/www/html/MathApp/vendor/codeigniter4/framework/system/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+#9 /var/www/html/MathApp/vendor/codeigniter4/framework/system/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+#10 /var/www/html/MathApp/vendor/codeigniter4/framework/system/Boot.php(363): CodeIgniter\CodeIgniter->run()
+#11 /var/www/html/MathApp/vendor/codeigniter4/framework/system/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+#12 /var/www/html/MathApp/public/index.php(59): CodeIgniter\Boot::bootWeb()
+#13 /var/www/html/MathApp/vendor/codeigniter4/framework/system/rewrite.php(44): require_once('...')
+#14 {main}
+CRITICAL - 2025-09-29 20:10:06 --> CodeIgniter\Database\Exceptions\DatabaseException: Unable to connect to the database.
+Main connection [MySQLi]: Access denied for user ''@'localhost' (using password: NO)
+[Method: POST, Route: auth/login]
+in SYSTEMPATH/Database/BaseConnection.php on line 465.
+ 1 SYSTEMPATH/Database/BaseConnection.php(614): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+ 3 SYSTEMPATH/Model.php(330): CodeIgniter\Database\BaseBuilder->get()
+ 4 SYSTEMPATH/BaseModel.php(715): CodeIgniter\Model->doFirst()
+ 5 APPPATH/Models/LoginModel.php(34): CodeIgniter\BaseModel->first()
+ 6 APPPATH/Controllers/LoginContrtoller.php(29): App\Models\LoginModel->findByIdentifier()
+ 7 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\LoginContrtoller->login()
+ 8 SYSTEMPATH/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+ 9 SYSTEMPATH/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+10 SYSTEMPATH/Boot.php(363): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+12 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+13 SYSTEMPATH/rewrite.php(44): require_once('/var/www/html/MathApp/public/index.php')
